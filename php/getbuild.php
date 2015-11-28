@@ -15,13 +15,13 @@ foreach($html->find('.final-builds') as $element){
             break;
         }
         array_push($array, $imgs->src);
-        echo $imgs->src . '<br>';
+        //echo $imgs->src . '<br>';
         $x++;
     }
     if ($x === 8){
         break;
     }
 }
-print_r($array);
-$mystring = json_encode($array,JSON_UNESCAPED_SLASHES);
+//print_r($array);
+echo json_encode($array,JSON_UNESCAPED_SLASHES);
 ?>

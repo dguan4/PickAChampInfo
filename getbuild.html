@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js'></script>
+</head>
+<body>
+    Some images:
+    <ul id="build"></ul>
+
+    <div id='build-id'>
+    <img id='buildimg' src='download.jpeg'>
+    <script type='text/javascript'>
+        $(document).ready(function(){
+            /* call PHP that has PHP array json_encoded */
+            /**$.post('php/getbuild.php', {action:'getBuild'}, function(data){
+                console.log(data);
+                var split = data.split(",");
+                console.log("split is "+split);
+                $('#build').append(data);
+            });**/
+            $.ajax({
+                url: 'php/getbuild.php',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    console.log(data);
+                    console.log("data at 0 is" + data[0]);
+                    for (var i = 0; i < data.length; i++){
+                        $('#build').append(data[i]);
+                        var div = document.getElementById('build-id');
+                        var img = document.createElement("img");
+                        img.src = data[i];
+                        div.appendChild(img);
+
+                    }
+                }
+            });
+        });
+    </script>
+    </div>
+</body>
+</html>
